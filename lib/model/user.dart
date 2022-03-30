@@ -1,41 +1,105 @@
+// ignore_for_file: prefer_if_null_operators
+
 class UserModel {
-  String? id;
-  String? uid;
+  final String? token;
+  User? user;
+  final String? error;
+  final int? status;
+
+  UserModel({this.token, this.user, this.error, this.status});
+
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      token: json['token'] != null ? json['token'] : null,
+      error: json['error'] != null ? json['error'] : null,
+      status: json['status'] != null ? json['status'] : 500,
+      user: json['user'] != null
+          ? User.fromJson(json['user'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'token': token,
+        'error': error,
+        'status': status,
+        'user': user != null ? user!.toJson() : null,
+      };
+}
+
+class User {
+  int? id;
   String? name;
   String? email;
-  String? number;
-  int? year;
+  String? num;
+  String? year;
   String? section;
-  String? created_at;
+  String? createdAt;
 
-  UserModel(
+  User(
       {this.id,
-      this.uid,
       this.name,
       this.email,
-      this.number,
-      this.year = 1,
-      this.section = 'حاسبات',
-      this.created_at});
+      this.num,
+      this.year,
+      this.section,
+      this.createdAt});
 
-  UserModel.fromJson(Map<String, dynamic> json)
+  User.fromJson(Map<String, dynamic> json)
       : id = json['id'],
-        uid = json['uid'],
         name = json['name'],
         email = json['email'],
-        number = json['number'],
+        num = json['num'],
         year = json['year'],
         section = json['section'],
-        created_at = json['created_at'];
+        createdAt = json['created_at'];
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'uid': uid,
         'name': name,
         'email': email,
-        'number': number,
+        'num': num,
         'year': year,
         'section': section,
-        'created_at': created_at,
+        'created_at': createdAt,
+      };
+}
+
+class AuthCommand {
+  String? name;
+  String? email;
+  String? num;
+  String? year;
+  String? section;
+  String? gender;
+  String? password;
+
+  AuthCommand({
+    this.name,
+    this.email,
+    this.gender = 'ذكر',
+    this.password,
+    this.num,
+    this.year = '1',
+    this.section = 'حاسبات',
+  });
+
+  AuthCommand.fromJson(Map<String, dynamic> json)
+      : name = json['name'],
+        gender = json['gender'],
+        email = json['email'],
+        password = json['password'],
+        num = json['num'],
+        year = json['year'],
+        section = json['section'];
+
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'email': email,
+        'password': password,
+        'gender': gender,
+        'num': num,
+        'year': year,
+        'section': section,
       };
 }

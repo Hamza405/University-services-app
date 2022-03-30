@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:q_overlay/q_overlay.dart';
@@ -11,6 +12,7 @@ import 'view/auth/login_view.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Get.put(AuthController());
+
   runApp(const MyApp());
 }
 

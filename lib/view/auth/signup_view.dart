@@ -12,11 +12,10 @@ class SignupView extends StatefulWidget {
 class _SignupViewState extends State<SignupView> {
   final _formKey = GlobalKey<FormState>();
 
-  var user = UserModel();
+  var user = AuthCommand();
   final controller = Get.find<AuthController>();
 
   var password = '';
-  var section = 'حاسبات';
   var year = 'الأولى';
   @override
   Widget build(BuildContext context) {
@@ -151,7 +150,7 @@ class _SignupViewState extends State<SignupView> {
                                       return null;
                                     },
                                     onChanged: (v) {
-                                      user.number = v;
+                                      user.num = v;
                                     },
                                   ),
                                   const SizedBox(
@@ -172,6 +171,7 @@ class _SignupViewState extends State<SignupView> {
                                       return null;
                                     },
                                     onChanged: (v) {
+                                      user.password = v;
                                       password = v;
                                     },
                                   ),
@@ -226,14 +226,14 @@ class _SignupViewState extends State<SignupView> {
                                           value: year,
                                           onChanged: (v) {
                                             user.year = v == 'الأولى'
-                                                ? 1
+                                                ? '1'
                                                 : v == 'الثانية'
-                                                    ? 2
+                                                    ? '2'
                                                     : v == 'الثالثة'
-                                                        ? 3
+                                                        ? '3'
                                                         : v == 'الرابعه'
-                                                            ? 4
-                                                            : 5;
+                                                            ? '4'
+                                                            : '5';
                                             year = v.toString();
                                             setState(() {});
                                           },
@@ -276,6 +276,37 @@ class _SignupViewState extends State<SignupView> {
                                             setState(() {});
                                           },
                                         ),
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Text(
+                                        'الجنس:',
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.normal),
+                                      ),
+                                      SizedBox(
+                                        width: size.width * 0.3,
+                                      ),
+                                      Expanded(
+                                        child: DropdownButton<String>(
+                                          isExpanded: true,
+                                          alignment: Alignment.bottomCenter,
+                                          items: <String>['ذكر', 'أنثى']
+                                              .map((String value) {
+                                            return DropdownMenuItem<String>(
+                                              value: value,
+                                              child: Text(value),
+                                            );
+                                          }).toList(),
+                                          value: user.gender,
+                                          onChanged: (v) {
+                                            user.gender = v;
+                                            setState(() {});
+                                          },
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -283,6 +314,9 @@ class _SignupViewState extends State<SignupView> {
                                       ? SizedBox(
                                           height: size.height * 0.02,
                                         )
+                                      : const SizedBox(),
+                                  controller.loading.isTrue
+                                      ? const LinearProgressIndicator()
                                       : const SizedBox(),
                                   Center(
                                     child: Padding(
@@ -296,6 +330,9 @@ class _SignupViewState extends State<SignupView> {
                                             if (_formKey.currentState!
                                                 .validate()) {
                                               _formKey.currentState!.save();
+                                              controller
+                                                  .signup(user)
+                                                  .then((value) => null);
                                             }
                                           },
                                           child: Container(

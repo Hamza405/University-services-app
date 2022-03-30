@@ -74,18 +74,6 @@ class LoginView extends GetView<AuthController> {
                               horizontal: 25, vertical: 25),
                           child: Obx(
                             () {
-                              // void _submitForm() {
-                              //   if (_formKey.currentState!.validate()) {
-                              //     _formKey.currentState!.save();
-                              //     controller
-                              //         .login(form['email']!, form['password']!)
-                              //         .then((value) => value
-                              //             ? Navigator.pushReplacementNamed(
-                              //                 context, '/home')
-                              //             : null);
-                              //   }
-                              // }
-
                               return Form(
                                 key: _formKey,
                                 child: Column(
@@ -145,6 +133,9 @@ class LoginView extends GetView<AuthController> {
                                               height: size.height * 0.02,
                                             )
                                           : const SizedBox(),
+                                      controller.loading.isTrue
+                                          ? const LinearProgressIndicator()
+                                          : const SizedBox(),
                                       Center(
                                         child: Padding(
                                           padding: EdgeInsets.only(
@@ -157,6 +148,17 @@ class LoginView extends GetView<AuthController> {
                                                 if (_formKey.currentState!
                                                     .validate()) {
                                                   _formKey.currentState!.save();
+                                                  controller
+                                                      .login(form['email']!,
+                                                          form['password']!)
+                                                      .then((value) => value
+                                                          ?
+                                                          // Navigator.pushReplacementNamed(
+                                                          //     context,
+                                                          //     '/home'
+                                                          //     )
+                                                          null
+                                                          : null);
                                                 }
                                               },
                                               child: Container(
