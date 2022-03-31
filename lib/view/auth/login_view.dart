@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:university_services_app/shared/constance.dart';
 
 import '../../controller/auth_controller.dart';
 
@@ -152,12 +153,10 @@ class LoginView extends GetView<AuthController> {
                                                       .login(form['email']!,
                                                           form['password']!)
                                                       .then((value) => value
-                                                          ?
-                                                          // Navigator.pushReplacementNamed(
-                                                          //     context,
-                                                          //     '/home'
-                                                          //     )
-                                                          null
+                                                          ? Navigator
+                                                              .pushReplacementNamed(
+                                                                  context,
+                                                                  homeRoute)
                                                           : null);
                                                 }
                                               },

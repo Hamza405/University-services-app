@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../controller/auth_controller.dart';
 import '../../model/user.dart';
+import '../../shared/constance.dart';
 
 class SignupView extends StatefulWidget {
   @override
@@ -330,9 +331,13 @@ class _SignupViewState extends State<SignupView> {
                                             if (_formKey.currentState!
                                                 .validate()) {
                                               _formKey.currentState!.save();
-                                              controller
-                                                  .signup(user)
-                                                  .then((value) => null);
+                                              controller.signup(user).then(
+                                                  (value) => value
+                                                      ? Navigator
+                                                          .pushReplacementNamed(
+                                                              context,
+                                                              homeRoute)
+                                                      : null);
                                             }
                                           },
                                           child: Container(

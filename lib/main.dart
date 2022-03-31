@@ -2,12 +2,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:q_overlay/q_overlay.dart';
+import 'package:university_services_app/controller/home_controller.dart';
 import 'package:university_services_app/shared/constance.dart';
 import 'package:university_services_app/view/auth/signup_view.dart';
 
 import 'controller/auth_controller.dart';
 import 'shared/utils/binding.dart';
 import 'view/auth/login_view.dart';
+import 'view/home/home_view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +37,10 @@ class MyApp extends StatelessWidget {
       routes: {
         loginRoute: (context) => LoginView(),
         signupRoute: (context) => SignupView(),
+        homeRoute: (context) {
+          Get.put(HomeController());
+          return HomeView();
+        },
       },
     );
   }

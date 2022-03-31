@@ -23,4 +23,14 @@ class AuthRepo {
       rethrow;
     }
   }
+
+  Future<Map<String, dynamic>> logout(String token) async {
+    try {
+      final res = await _dio.get('${baseURL}user/revoke',
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+      return res.data as Map<String, dynamic>;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

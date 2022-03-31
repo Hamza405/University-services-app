@@ -54,4 +54,24 @@ class AuthController extends GetxController {
       return false;
     }
   }
+
+  Future<bool> logout() async {
+    loading(true);
+    try {
+      final res = await repo.logout(token.value);
+      if (res['status'] == 200 || res['status'] == 201) {
+        isAuth(false);
+        token('');
+        loading(false);
+        return true;
+      }
+      loading(false);
+      showErrorSnackBar('Some thing went wrong!');
+      return false;
+    } catch (e) {
+      loading(false);
+      showErrorSnackBar('Some thing went wrong!');
+      return false;
+    }
+  }
 }
