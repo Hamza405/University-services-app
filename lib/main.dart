@@ -37,10 +37,7 @@ class MyApp extends StatelessWidget {
       routes: {
         loginRoute: (context) => LoginView(),
         signupRoute: (context) => SignupView(),
-        homeRoute: (context) {
-          Get.put(HomeController());
-          return HomeView();
-        },
+        homeRoute: (context) => HomeView(),
       },
     );
   }
