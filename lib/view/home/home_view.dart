@@ -6,6 +6,8 @@ import 'package:university_services_app/shared/constance.dart';
 import 'package:university_services_app/shared/widgets/bottomnavbar.dart';
 import 'package:university_services_app/view/home/profile_view.dart';
 
+import '../../shared/widgets/appbar.dart';
+import '../../shared/widgets/drawer.dart';
 import 'ads_view.dart';
 import 'orders_view.dart';
 
@@ -30,20 +32,9 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          drawer: Drawer(),
+          drawer: const TDrawer(),
           bottomNavigationBar: const BottomNavbar(),
-          appBar: AppBar(
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.exit_to_app),
-                onPressed: () {
-                  authController.logout().then((value) => value
-                      ? Navigator.pushReplacementNamed(context, loginRoute)
-                      : null);
-                },
-              ),
-            ],
-          ),
+          appBar: const TAppBar(),
           body: Obx(() => views[controller.tabIndex.value])),
     );
   }

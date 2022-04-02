@@ -1,17 +1,22 @@
+// ignore_for_file: prefer_if_null_operators
+
 class AdsModel {
   final List<Ads>? ads;
   final int? status;
+  final String? error;
 
-  AdsModel({this.ads, this.status});
+  AdsModel({this.ads, this.status, this.error});
 
   AdsModel.fromJson(Map<String, dynamic> json)
       : ads = List<Ads>.from((json["ads"] as Iterable)
             .map((x) => Ads.fromJson(x as Map<String, dynamic>))),
-        status = json['status'];
+        error = json['error'] != null ? json['error'] : null,
+        status = json['status'] ?? 500;
 
   Map<String, dynamic> toJson() => {
         'ads': ads != null ? ads : null,
         'status': status,
+        'error': error != null ? error : null,
       };
 }
 
