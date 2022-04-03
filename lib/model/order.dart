@@ -29,7 +29,7 @@ class OrderModel {
 
 class Order {
   final int? id;
-  final int? serviceId;
+  final String? serviceId;
   final int? state;
   final DateTime? deadline;
   final DateTime? created_at;

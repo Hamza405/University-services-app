@@ -87,6 +87,44 @@ class OrderView extends GetView<HomeController> {
                       style: TextStyle(fontSize: 30, color: primaryColor),
                     ),
                   ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  ...controller.myOrder.map((e) {
+                    var name = controller.services
+                        .firstWhere(
+                            (element) => element.id.toString() == e.serviceId)
+                        .serviceName;
+                    return Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          child: Card(
+                            child: ListTile(
+                              contentPadding:
+                                  const EdgeInsets.symmetric(horizontal: 25.0),
+                              title: Row(
+                                children: [
+                                  Expanded(flex: 2, child: Text(name!)),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                      flex: 2,
+                                      child: e.state == 0
+                                          ? Text('قيد الانتظار')
+                                          : Text('مكتمل')),
+                                ],
+                              ),
+                              trailing: Icon(
+                                e.state == 0 ? Icons.watch_later : Icons.cancel,
+                                color: Colors.orangeAccent,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList()
                 ]),
           ));
   }

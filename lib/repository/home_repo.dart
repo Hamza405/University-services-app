@@ -40,4 +40,14 @@ class HomeRepo {
       rethrow;
     }
   }
+
+  Future<OrderModel> getMyOrder(String token) async {
+    try {
+      final response = await _dio.get('${baseURL}getOrders',
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+      return OrderModel.fromJson(response.data as Map<String, dynamic>);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
