@@ -98,6 +98,7 @@ class HomeController extends GetxController {
       loading(false);
     } catch (e) {
       loading(false);
+
       print(e.toString());
       showErrorSnackBar('Some thing went wrong!');
     }

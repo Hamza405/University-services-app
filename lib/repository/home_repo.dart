@@ -32,7 +32,7 @@ class HomeRepo {
     try {
       final response = await _dio.post('${baseURL}addOrder',
           data: {
-            'serviceId': serviceId,
+            'serviceId': serviceId.toString(),
           },
           options: Options(headers: {'Authorization': 'Bearer $token'}));
       return OrderModel.fromJson(response.data as Map<String, dynamic>);
