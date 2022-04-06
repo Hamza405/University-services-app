@@ -25,9 +25,9 @@ class BottomNavbar extends GetView<HomeController> {
             items: [
               BottomNavigationBarItem(
                 icon: Container(
-                  margin: EdgeInsets.only(bottom: 7),
-                  child: Icon(
-                    Icons.ads_click_outlined,
+                  margin: const EdgeInsets.only(bottom: 7),
+                  child: const Icon(
+                    Icons.ads_click_rounded,
                     size: 20.0,
                   ),
                 ),
@@ -36,26 +36,15 @@ class BottomNavbar extends GetView<HomeController> {
               ),
               BottomNavigationBarItem(
                 icon: Container(
-                  margin: EdgeInsets.only(bottom: 7),
-                  child: Icon(
-                    Icons.border_outer_sharp,
+                  margin: const EdgeInsets.only(bottom: 7),
+                  child: const Icon(
+                    Icons.document_scanner_outlined,
                     size: 20.0,
                   ),
                 ),
                 label: 'طلباتي',
                 backgroundColor: color,
-              ),
-              BottomNavigationBarItem(
-                icon: Container(
-                  margin: EdgeInsets.only(bottom: 7),
-                  child: Icon(
-                    Icons.person,
-                    size: 20.0,
-                  ),
-                ),
-                label: 'حسابي',
-                backgroundColor: color,
-              ),
+              )
             ],
           ),
         )));

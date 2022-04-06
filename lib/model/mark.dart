@@ -24,24 +24,25 @@ class Mark {
   int? id;
   int? userId;
   int? subjectId;
+  String? subjectName;
   int? th;
   int? pr;
   String? result;
   String? year;
   String? semester;
-  String? createdAt;
-  String? updatedAt;
+  DateTime? created_at;
 
   Mark(
       {this.id,
       this.userId,
       this.subjectId,
+      this.subjectName = '',
       this.th,
       this.pr,
       this.result,
       this.year,
       this.semester,
-      this.createdAt});
+      this.created_at});
 
   Mark.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -52,7 +53,9 @@ class Mark {
     result = json['result'];
     year = json['year'];
     semester = json['semester'];
-    createdAt = json['created_at'];
+    created_at = json['created_at'] == null
+        ? null
+        : DateTime.parse(json['created_at'].toString());
   }
 
   Map<String, dynamic> toJson() {
@@ -65,7 +68,7 @@ class Mark {
     data['result'] = this.result;
     data['year'] = this.year;
     data['semester'] = this.semester;
-    data['created_at'] = this.createdAt;
+    data['created_at'] = this.created_at;
     return data;
   }
 }

@@ -4,7 +4,6 @@ import 'package:university_services_app/controller/auth_controller.dart';
 import 'package:university_services_app/controller/home_controller.dart';
 import 'package:university_services_app/shared/constance.dart';
 import 'package:university_services_app/shared/widgets/bottomnavbar.dart';
-import 'package:university_services_app/view/home/profile_view.dart';
 
 import '../../shared/widgets/appbar.dart';
 import '../../shared/widgets/drawer.dart';
@@ -23,10 +22,14 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Get.put(HomeController());
   }
 
-  final views = <Widget>[AdsView(), OrderView(), ProfileView()];
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  final views = const <Widget>[AdsView(), OrderView()];
 
   @override
   Widget build(BuildContext context) {

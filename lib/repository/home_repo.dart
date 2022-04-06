@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:university_services_app/model/order.dart';
 import 'package:university_services_app/model/service.dart';
+import 'package:university_services_app/model/subject.dart';
 
 import '../model/ads.dart';
 import '../shared/constance.dart';
@@ -23,6 +24,16 @@ class HomeRepo {
       final response = await _dio.get('${baseURL}services',
           options: Options(headers: {'Authorization': 'Bearer $token'}));
       return ServiceModel.fromJson(response.data as Map<String, dynamic>);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<SubjectModel> getSubjects(String token) async {
+    try {
+      final response = await _dio.get('${baseURL}getSubjects',
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+      return SubjectModel.fromJson(response.data as Map<String, dynamic>);
     } catch (e) {
       rethrow;
     }

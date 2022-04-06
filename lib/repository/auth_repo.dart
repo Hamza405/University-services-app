@@ -33,4 +33,14 @@ class AuthRepo {
       rethrow;
     }
   }
+
+  Future<UserModel> getUserData(String token) async {
+    try {
+      final res = await _dio.get('${baseURL}getUser',
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+      return UserModel.fromJson(res.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

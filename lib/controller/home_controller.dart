@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
+import 'package:university_services_app/model/subject.dart';
 import 'package:university_services_app/repository/home_repo.dart';
 
 import '../model/ads.dart';
@@ -13,6 +14,7 @@ class HomeController extends GetxController {
   final repo = HomeRepo();
 
   RxList<Ads> ads = <Ads>[].obs;
+  RxList<Subject> subjects = <Subject>[].obs;
   RxList<Service> services = <Service>[].obs;
   RxList<Order> myOrder = <Order>[].obs;
   final Rx<String> appTitle = 'الرئيسية'.obs;
@@ -24,10 +26,13 @@ class HomeController extends GetxController {
     tabIndex.value = index;
   }
 
+  @override
   void onInit() {
     getAds();
+    getSubjects();
     getServices();
     getOrder();
+    super.onInit();
   }
 
   @override
@@ -41,6 +46,23 @@ class HomeController extends GetxController {
       final res = await repo.getAds(auth.token());
       if (res.status == 200 || res.status == 201 && res.error == null) {
         ads(res.ads);
+      } else {
+        showErrorSnackBar(res.error.toString());
+      }
+      loading(false);
+    } catch (e) {
+      loading(false);
+
+      showErrorSnackBar('Some thing went wrong!');
+    }
+  }
+
+  Future<void> getSubjects() async {
+    try {
+      loading(true);
+      final res = await repo.getSubjects(auth.token());
+      if (res.status == 200 || res.status == 201 && res.error == null) {
+        subjects(res.subjects);
       } else {
         showErrorSnackBar(res.error.toString());
       }
@@ -75,6 +97,7 @@ class HomeController extends GetxController {
       final res = await repo.addOrder(serviceId!, auth.token());
       if (res.status == 200 || res.status == 201 && res.error == null) {
         showOrderSuccess(res.order!);
+        getOrder();
       } else {
         showErrorSnackBar(res.error.toString());
       }

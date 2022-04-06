@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:university_services_app/controller/marks_controller.dart';
+import 'package:university_services_app/shared/component.dart';
 import 'package:university_services_app/shared/constance.dart';
 
 import '../../controller/auth_controller.dart';
@@ -28,6 +30,7 @@ class TDrawer extends StatelessWidget {
             leading: const Icon(Icons.home),
             title: const Text('علاماتي'),
             onTap: () {
+              Get.put(MarksController());
               Navigator.pushReplacementNamed(context, marksRoute);
             },
           ),
@@ -37,7 +40,7 @@ class TDrawer extends StatelessWidget {
             onTap: () {
               Get.find<AuthController>().logout().then((value) => value
                   ? Navigator.pushReplacementNamed(context, '/login')
-                  : null);
+                  : showErrorSnackBar('حدث خطأ أثناء تسجيل الخروج'));
             },
           ),
         ],

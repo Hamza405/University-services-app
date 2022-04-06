@@ -1,37 +1,39 @@
-import 'dart:convert';
-
-import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../model/user.dart';
+class LocalStorage {
+  SharedPreferences? _sharedPrefrence;
 
-class LocalStorageData extends GetxController {
-  Future<User?> get getUser async {
-    try {
-      User user = await _getUserData();
-      if (User == null) return null;
-      return user;
-    } catch (e) {
-      print(e.toString());
-      return null;
+  Future<SharedPreferences?> init() async {
+    if (_sharedPrefrence == null) {
+      _sharedPrefrence = await SharedPreferences.getInstance();
     }
+    return _sharedPrefrence;
   }
 
-  _getUserData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    var value = prefs.getString('CASH_USER_DATA');
-    return User.fromJson(json.decode(value!));
+  String? getData(String key) {
+    if (_sharedPrefrence!.containsKey(key)) {
+      return _sharedPrefrence!.get(key).toString();
+    }
+    return null;
   }
 
-  setUserData(User model) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    await prefs.setString('CASH_USER_DATA', json.encode(model.toJson()));
+  Future<bool> deleteDataByKey(String key) {
+    return _sharedPrefrence!.remove(key);
   }
 
-  void deleteUserData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
+  void saveData(String key, dynamic value) {
+    _sharedPrefrence!.setString(key, value.toString());
+  }
+
+  void saveBooleanData(String key, bool value) {
+    _sharedPrefrence!.setBool(key, value);
+  }
+
+  bool? getBooleanData(String key) {
+    return _sharedPrefrence?.getBool(key) ?? null;
+  }
+
+  bool containsKey(String keyDate) {
+    return _sharedPrefrence!.containsKey(keyDate);
   }
 }

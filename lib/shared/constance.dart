@@ -5,6 +5,8 @@ const signupRoute = '/signup';
 const homeRoute = '/home';
 const marksRoute = '/marks';
 
+const tokenKey = 'token';
+
 const baseURL = 'http://192.168.1.8:8000/api/';
 
 const primaryColor = Colors.purple;
