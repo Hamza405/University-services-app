@@ -35,6 +35,13 @@ class TDrawer extends StatelessWidget {
             },
           ),
           ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text('المقررات الدراسية'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, subjectsRoute);
+            },
+          ),
+          ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text('تسجيل الخروج'),
             onTap: () {

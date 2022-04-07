@@ -29,7 +29,7 @@ class _HomeViewState extends State<HomeView> {
     super.dispose();
   }
 
-  final views = const <Widget>[AdsView(), OrderView()];
+  final views = <Widget>[AdsView(), OrderView()];
 
   @override
   Widget build(BuildContext context) {

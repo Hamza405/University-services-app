@@ -9,15 +9,18 @@ class AdsView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => controller.loading.isTrue
-        ? const Center(
-            child: CircularProgressIndicator(),
-          )
-        : SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: controller.ads.map((ads) => AdsCard(ads: ads)).toList(),
+    return Obx(
+      () => controller.loading.isTrue
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children:
+                    controller.ads.map((ads) => AdsCard(ads: ads)).toList(),
+              ),
             ),
-          ));
+    );
   }
 }

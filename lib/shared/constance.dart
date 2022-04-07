@@ -4,6 +4,7 @@ const loginRoute = '/login';
 const signupRoute = '/signup';
 const homeRoute = '/home';
 const marksRoute = '/marks';
+const subjectsRoute = '/subjects';
 
 const tokenKey = 'token';
 

@@ -11,6 +11,7 @@ import 'shared/utils/binding.dart';
 import 'view/auth/signup_view.dart';
 import 'view/home/home_view.dart';
 import 'view/marks/marks_view.dart';
+import 'view/subjects/subjects.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
           return HomeView();
         },
         marksRoute: (context) => const MarksView(),
+        subjectsRoute: (context) => const SubjectsView(),
       },
     );
   }
