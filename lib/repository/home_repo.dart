@@ -1,17 +1,17 @@
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 import 'package:university_services_app/model/order.dart';
 import 'package:university_services_app/model/service.dart';
 import 'package:university_services_app/model/subject.dart';
 
 import '../model/ads.dart';
-import '../shared/constance.dart';
 
 class HomeRepo {
-  final _dio = Dio();
+  final _dio = Get.find<Dio>();
 
   Future<AdsModel> getAds(String token) async {
     try {
-      final response = await _dio.get('${baseURL}ads',
+      final response = await _dio.get('ads',
           options: Options(headers: {'Authorization': 'Bearer $token'}));
       return AdsModel.fromJson(response.data as Map<String, dynamic>);
     } catch (e) {
@@ -21,7 +21,7 @@ class HomeRepo {
 
   Future<ServiceModel> getServices(String token) async {
     try {
-      final response = await _dio.get('${baseURL}services',
+      final response = await _dio.get('services',
           options: Options(headers: {'Authorization': 'Bearer $token'}));
       return ServiceModel.fromJson(response.data as Map<String, dynamic>);
     } catch (e) {
@@ -31,7 +31,7 @@ class HomeRepo {
 
   Future<SubjectModel> getSubjects(String token) async {
     try {
-      final response = await _dio.get('${baseURL}getSubjects',
+      final response = await _dio.get('getSubjects',
           options: Options(headers: {'Authorization': 'Bearer $token'}));
       return SubjectModel.fromJson(response.data as Map<String, dynamic>);
     } catch (e) {
@@ -41,7 +41,7 @@ class HomeRepo {
 
   Future<OrderModel> addOrder(int serviceId, String token) async {
     try {
-      final response = await _dio.post('${baseURL}addOrder',
+      final response = await _dio.post('addOrder',
           data: {
             'serviceId': serviceId.toString(),
           },
@@ -54,7 +54,7 @@ class HomeRepo {
 
   Future<OrderModel> getMyOrder(String token) async {
     try {
-      final response = await _dio.get('${baseURL}getOrders',
+      final response = await _dio.get('getOrders',
           options: Options(headers: {'Authorization': 'Bearer $token'}));
       return OrderModel.fromJson(response.data as Map<String, dynamic>);
     } catch (e) {

@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 import '../model/user.dart';
-import '../shared/constance.dart';
 
 class AuthRepo {
-  final _dio = Dio();
+  final _dio = Get.find<Dio>();
 
   Future<UserModel> login(email, password) async {
     try {
-      final res = await _dio.post('${baseURL}login',
-          data: {'email': email, 'password': password});
+      final res = await _dio
+          .post('login', data: {'email': email, 'password': password});
       return UserModel.fromJson(res.data);
     } catch (e) {
       rethrow;
@@ -17,7 +17,7 @@ class AuthRepo {
 
   Future<UserModel> signup(AuthCommand command) async {
     try {
-      final res = await _dio.post('${baseURL}signup', data: command.toJson());
+      final res = await _dio.post('signup', data: command.toJson());
       return UserModel.fromJson(res.data);
     } catch (e) {
       rethrow;
@@ -26,7 +26,7 @@ class AuthRepo {
 
   Future<Map<String, dynamic>> logout(String token) async {
     try {
-      final res = await _dio.get('${baseURL}user/revoke',
+      final res = await _dio.get('user/revoke',
           options: Options(headers: {'Authorization': 'Bearer $token'}));
       return res.data as Map<String, dynamic>;
     } catch (e) {
@@ -36,7 +36,7 @@ class AuthRepo {
 
   Future<UserModel> getUserData(String token) async {
     try {
-      final res = await _dio.get('${baseURL}getUser',
+      final res = await _dio.get('getUser',
           options: Options(headers: {'Authorization': 'Bearer $token'}));
       return UserModel.fromJson(res.data);
     } catch (e) {

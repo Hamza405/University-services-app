@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:q_overlay/q_overlay.dart';
@@ -48,6 +49,9 @@ Future<void> initApp() async {
   final sharedPreferences = LocalStorage();
   await sharedPreferences.init();
   Get.put(sharedPreferences);
+  final _dio = Dio();
+  _dio.options.baseUrl = baseURL;
+  Get.put(_dio);
   final auth = AuthController();
   await auth.autoLogin();
   Get.put(auth);
