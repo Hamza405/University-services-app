@@ -5,6 +5,7 @@ const signupRoute = '/signup';
 const homeRoute = '/home';
 const marksRoute = '/marks';
 const subjectsRoute = '/subjects';
+const studyProgramRoute = '/studyProgram';
 
 const tokenKey = 'token';
 

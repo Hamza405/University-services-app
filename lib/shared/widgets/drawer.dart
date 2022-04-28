@@ -16,7 +16,7 @@ class TDrawer extends StatelessWidget {
         children: [
           AppBar(
             automaticallyImplyLeading: false,
-            title: const Text('HMK'),
+            title: const Text('كلية الهمك'),
           ),
           const Divider(),
           ListTile(
@@ -39,6 +39,13 @@ class TDrawer extends StatelessWidget {
             title: const Text('المقررات الدراسية'),
             onTap: () {
               Navigator.pushReplacementNamed(context, subjectsRoute);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text('البرنامج الدراسي'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, studyProgramRoute);
             },
           ),
           ListTile(
