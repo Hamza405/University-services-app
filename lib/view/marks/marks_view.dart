@@ -41,6 +41,13 @@ class _MarksViewState extends State<MarksView> with TickerProviderStateMixin {
       child: Scaffold(
           appBar: AppBar(
             title: Text('النتائج الأمتحانية'),
+            flexibleSpace: Container(
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [Colors.purple, Colors.pinkAccent],
+            ))),
             bottom: TabBar(controller: tabController, tabs: const [
               Tab(
                 child: Text('علاماتي'),

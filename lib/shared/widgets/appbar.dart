@@ -3,11 +3,21 @@ import 'package:get/get.dart';
 import 'package:university_services_app/controller/home_controller.dart';
 
 class TAppBar extends GetView<HomeController> implements PreferredSizeWidget {
-  const TAppBar({Key? key}) : super(key: key);
+  final String title;
+  const TAppBar({Key? key, this.title = 'الهمك'}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(title: Text(controller.appTitle.value));
+    return AppBar(
+      title: Text(title),
+      flexibleSpace: Container(
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+        begin: Alignment.topRight,
+        end: Alignment.bottomLeft,
+        colors: [Colors.purple, Colors.pinkAccent],
+      ))),
+    );
   }
 
   @override

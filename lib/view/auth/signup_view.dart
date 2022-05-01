@@ -344,7 +344,14 @@ class _SignupViewState extends State<SignupView> {
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(15),
-                                              color: Colors.purple,
+                                              gradient: const LinearGradient(
+                                                begin: Alignment.topRight,
+                                                end: Alignment.bottomLeft,
+                                                colors: [
+                                                  Colors.purple,
+                                                  Colors.pinkAccent
+                                                ],
+                                              ),
                                             ),
                                             height: 35,
                                             width: size.width * 0.4,

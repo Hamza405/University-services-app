@@ -29,8 +29,15 @@ class StudyProgram {
   final String? year5;
   final DateTime? created_at;
 
-  StudyProgram(this.id, this.day, this.year1, this.year2, this.year3,
-      this.year4, this.year5, this.created_at);
+  StudyProgram(
+      {this.id,
+      this.day,
+      this.year1,
+      this.year2,
+      this.year3,
+      this.year4,
+      this.year5,
+      this.created_at});
 
   StudyProgram.fromJson(Map<String, dynamic> json)
       : id = json['id'],

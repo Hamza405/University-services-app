@@ -10,14 +10,21 @@ class BottomNavbar extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Obx(() => MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-        child: SizedBox(
+        child: Container(
           height: 65,
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+            begin: Alignment.centerRight,
+            end: Alignment.centerLeft,
+            colors: [Colors.purple, Colors.pinkAccent],
+          )),
           child: BottomNavigationBar(
             showUnselectedLabels: true,
             showSelectedLabels: true,
             onTap: controller.changeTabIndex,
             currentIndex: controller.tabIndex.value,
-            backgroundColor: color,
+            backgroundColor: Colors.transparent,
+            type: BottomNavigationBarType.fixed,
             unselectedItemColor: Colors.white.withOpacity(0.5),
             selectedItemColor: Colors.white,
             // unselectedLabelStyle: unselectedLabelStyle,

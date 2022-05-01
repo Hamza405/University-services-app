@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:university_services_app/shared/widgets/drawer.dart';
+import 'package:university_services_app/view/study_program/widgets/years_widget.dart';
+
+import '../../shared/widgets/appbar.dart';
+import 'widgets/days_widget.dart';
 
 class StudyProgramView extends StatelessWidget {
   const StudyProgramView({Key? key}) : super(key: key);
@@ -7,13 +11,11 @@ class StudyProgramView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('البرنامج الدراسي'),
+      appBar: TAppBar(
+        title: 'البرنامج الدراسي',
       ),
       drawer: const TDrawer(),
-      body: const Center(
-        child: Text('البرنامج الدراسي'),
-      ),
+      body: Column(children: const [DaysWidget(), YearsWidget()]),
     );
   }
 }

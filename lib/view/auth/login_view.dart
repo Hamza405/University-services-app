@@ -24,7 +24,7 @@ class LoginView extends GetView<AuthController> {
           Container(
             width: double.infinity,
             height: double.infinity,
-            color: Colors.purple.withOpacity(0.6),
+            color: Colors.purple.withOpacity(0.5),
           ),
           SingleChildScrollView(
             child: Column(
@@ -164,7 +164,15 @@ class LoginView extends GetView<AuthController> {
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(15),
-                                                  color: Colors.purple,
+                                                  gradient:
+                                                      const LinearGradient(
+                                                    begin: Alignment.topRight,
+                                                    end: Alignment.bottomLeft,
+                                                    colors: [
+                                                      Colors.purple,
+                                                      Colors.pinkAccent
+                                                    ],
+                                                  ),
                                                 ),
                                                 height: 35,
                                                 width: MediaQuery.of(context)

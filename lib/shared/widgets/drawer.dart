@@ -5,6 +5,7 @@ import 'package:university_services_app/shared/component.dart';
 import 'package:university_services_app/shared/constance.dart';
 
 import '../../controller/auth_controller.dart';
+import 'appbar.dart';
 
 class TDrawer extends StatelessWidget {
   const TDrawer({Key? key}) : super(key: key);
@@ -14,9 +15,27 @@ class TDrawer extends StatelessWidget {
     return Drawer(
       child: Column(
         children: [
-          AppBar(
-            automaticallyImplyLeading: false,
-            title: const Text('كلية الهمك'),
+          Container(
+            width: double.infinity,
+            height: 55,
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [Colors.purple, Colors.pinkAccent],
+            )),
+            child: const Center(
+                child: SizedBox(
+              width: double.infinity,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 32.0),
+                child: Text(
+                  'كلية الهمك',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                  textAlign: TextAlign.right,
+                ),
+              ),
+            )),
           ),
           const Divider(),
           ListTile(

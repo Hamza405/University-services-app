@@ -4,6 +4,7 @@ import 'package:university_services_app/controller/home_controller.dart';
 import 'package:university_services_app/shared/widgets/progress_indicator.dart';
 
 import '../../model/subject.dart';
+import '../../shared/widgets/appbar.dart';
 import '../../shared/widgets/drawer.dart';
 
 class SubjectsView extends GetView<HomeController> {
@@ -13,8 +14,8 @@ class SubjectsView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('المقررات الدراسية'),
+        appBar: const TAppBar(
+          title: 'المقررات الدراسية',
         ),
         drawer: TDrawer(),
         body: Obx(() => controller.loading.isTrue

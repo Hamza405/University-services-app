@@ -37,7 +37,9 @@ class _HomeViewState extends State<HomeView> {
       child: Scaffold(
           drawer: const TDrawer(),
           bottomNavigationBar: const BottomNavbar(),
-          appBar: const TAppBar(),
+          appBar: const TAppBar(
+            title: 'الرئيسية',
+          ),
           body: Obx(() => views[controller.tabIndex.value])),
     );
   }
