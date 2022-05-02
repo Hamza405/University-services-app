@@ -40,16 +40,19 @@ class _MarksViewState extends State<MarksView> with TickerProviderStateMixin {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.transparent,
             title: Text('النتائج الأمتحانية'),
             flexibleSpace: Container(
                 decoration: const BoxDecoration(
+                    borderRadius:
+                        BorderRadius.vertical(bottom: Radius.circular(16.0)),
                     boxShadow: [
-                  BoxShadow(
-                    color: Colors.purple,
-                    blurRadius: 10,
-                    offset: Offset(0, 5),
-                  ),
-                ],
+                      BoxShadow(
+                        color: Colors.purple,
+                        blurRadius: 10,
+                        offset: Offset(0, 5),
+                      ),
+                    ],
                     gradient: LinearGradient(
                       begin: Alignment.topRight,
                       end: Alignment.bottomLeft,
@@ -58,9 +61,10 @@ class _MarksViewState extends State<MarksView> with TickerProviderStateMixin {
             bottom: TabBar(
                 controller: tabController,
                 indicatorColor: Colors.white,
+                indicatorSize: TabBarIndicatorSize.label,
                 tabs: const [
                   Tab(
-                    child: Text('علاماتي'),
+                    child: Text('     علاماتي     '),
                   ),
                   Tab(
                     child: Text('جميع الامتحانات'),

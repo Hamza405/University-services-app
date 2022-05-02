@@ -11,13 +11,15 @@ class BottomNavbar extends GetView<HomeController> {
     return Obx(() => MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
         child: Container(
+          width: double.infinity,
           height: 65,
           decoration: const BoxDecoration(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
               gradient: LinearGradient(
-            begin: Alignment.centerRight,
-            end: Alignment.centerLeft,
-            colors: [Colors.purple, Colors.pinkAccent],
-          )),
+                begin: Alignment.centerRight,
+                end: Alignment.centerLeft,
+                colors: [Colors.purple, Colors.pinkAccent],
+              )),
           child: BottomNavigationBar(
             showUnselectedLabels: true,
             showSelectedLabels: true,

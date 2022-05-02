@@ -19,6 +19,7 @@ class TDrawer extends StatelessWidget {
             width: double.infinity,
             height: 55,
             decoration: const BoxDecoration(
+                borderRadius: BorderRadius.vertical(bottom: Radius.circular(8)),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.purple,
