@@ -10,12 +10,14 @@ class StudyProgramView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: TAppBar(
-        title: 'البرنامج الدراسي',
+    return SafeArea(
+      child: Scaffold(
+        appBar: const TAppBar(
+          title: 'البرنامج الدراسي',
+        ),
+        drawer: const TDrawer(),
+        body: Column(children: const [DaysWidget(), YearsWidget()]),
       ),
-      drawer: const TDrawer(),
-      body: Column(children: const [DaysWidget(), YearsWidget()]),
     );
   }
 }

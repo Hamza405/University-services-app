@@ -43,19 +43,29 @@ class _MarksViewState extends State<MarksView> with TickerProviderStateMixin {
             title: Text('النتائج الأمتحانية'),
             flexibleSpace: Container(
                 decoration: const BoxDecoration(
+                    boxShadow: [
+                  BoxShadow(
+                    color: Colors.purple,
+                    blurRadius: 10,
+                    offset: Offset(0, 5),
+                  ),
+                ],
                     gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [Colors.purple, Colors.pinkAccent],
-            ))),
-            bottom: TabBar(controller: tabController, tabs: const [
-              Tab(
-                child: Text('علاماتي'),
-              ),
-              Tab(
-                child: Text('جميع الامتحانات'),
-              ),
-            ]),
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [Colors.purple, Colors.pinkAccent],
+                    ))),
+            bottom: TabBar(
+                controller: tabController,
+                indicatorColor: Colors.white,
+                tabs: const [
+                  Tab(
+                    child: Text('علاماتي'),
+                  ),
+                  Tab(
+                    child: Text('جميع الامتحانات'),
+                  ),
+                ]),
           ),
           drawer: TDrawer(),
           body: SizedBox(

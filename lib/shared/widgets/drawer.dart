@@ -19,11 +19,18 @@ class TDrawer extends StatelessWidget {
             width: double.infinity,
             height: 55,
             decoration: const BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.purple,
+                    blurRadius: 10,
+                    offset: Offset(0, 5),
+                  ),
+                ],
                 gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [Colors.purple, Colors.pinkAccent],
-            )),
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [Colors.purple, Colors.pinkAccent],
+                )),
             child: const Center(
                 child: SizedBox(
               width: double.infinity,
@@ -37,36 +44,42 @@ class TDrawer extends StatelessWidget {
               ),
             )),
           ),
-          const Divider(),
+          const SizedBox(
+            height: 5,
+          ),
           ListTile(
-            leading: const Icon(Icons.home),
+            leading: const Icon(Icons.home_outlined),
             title: const Text('الرئيسية'),
             onTap: () {
               Navigator.pushReplacementNamed(context, homeRoute);
             },
           ),
+          const Divider(),
           ListTile(
-            leading: const Icon(Icons.home),
+            leading: const Icon(Icons.my_library_books_outlined),
             title: const Text('علاماتي'),
             onTap: () {
               Get.put(MarksController());
               Navigator.pushReplacementNamed(context, marksRoute);
             },
           ),
+          const Divider(),
           ListTile(
-            leading: const Icon(Icons.home),
+            leading: const Icon(Icons.edit_note),
             title: const Text('المقررات الدراسية'),
             onTap: () {
               Navigator.pushReplacementNamed(context, subjectsRoute);
             },
           ),
+          const Divider(),
           ListTile(
-            leading: const Icon(Icons.home),
+            leading: const Icon(Icons.calendar_month_outlined),
             title: const Text('البرنامج الدراسي'),
             onTap: () {
               Navigator.pushReplacementNamed(context, studyProgramRoute);
             },
           ),
+          const Divider(),
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text('تسجيل الخروج'),
