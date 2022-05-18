@@ -6,6 +6,7 @@ import 'package:university_services_app/model/study_program.dart';
 import 'package:university_services_app/model/subject.dart';
 
 import '../model/ads.dart';
+import '../model/re_order.dart';
 
 class HomeRepo {
   final _dio = Get.find<Dio>();
@@ -58,6 +59,16 @@ class HomeRepo {
       final response = await _dio.get('getOrders',
           options: Options(headers: {'Authorization': 'Bearer $token'}));
       return OrderModel.fromJson(response.data as Map<String, dynamic>);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ReOrderModel> getMyReOrder(String token) async {
+    try {
+      final response = await _dio.get('getReOrder',
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+      return ReOrderModel.fromJson(response.data as Map<String, dynamic>);
     } catch (e) {
       rethrow;
     }

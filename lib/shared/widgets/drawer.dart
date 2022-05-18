@@ -12,6 +12,7 @@ class TDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Drawer(
       child: Column(
         children: [
@@ -90,6 +91,14 @@ class TDrawer extends StatelessWidget {
                   : showErrorSnackBar('حدث خطأ أثناء تسجيل الخروج'));
             },
           ),
+          const Spacer(),
+          SizedBox(
+              width: 150,
+              height: 150,
+              child: Image.asset('assets/logo/logo.png')),
+          const SizedBox(
+            height: 32,
+          )
         ],
       ),
     );

@@ -6,6 +6,7 @@ import 'package:university_services_app/repository/home_repo.dart';
 
 import '../model/ads.dart';
 import '../model/order.dart';
+import '../model/re_order.dart';
 import '../model/service.dart';
 import '../shared/component.dart';
 import 'auth_controller.dart';
@@ -19,6 +20,7 @@ class HomeController extends GetxController {
   RxList<Service> services = <Service>[].obs;
   RxList<StudyProgram> studyProgram = <StudyProgram>[].obs;
   RxList<Order> myOrder = <Order>[].obs;
+  RxList<ReOrder> myReOrder = <ReOrder>[].obs;
   final Rx<String> appTitle = 'الرئيسية'.obs;
   final Rx<bool> loading = false.obs;
   final Rx<Service> selectedService = Service().obs;
@@ -138,6 +140,24 @@ class HomeController extends GetxController {
       final res = await repo.getMyOrder(auth.token());
       if (res.status == 200 || res.status == 201 && res.error == null) {
         myOrder(res.myOrder);
+      } else {
+        showErrorSnackBar(res.error.toString());
+      }
+      loading(false);
+    } catch (e) {
+      loading(false);
+
+      print(e.toString());
+      showErrorSnackBar('Some thing went wrong!');
+    }
+  }
+
+  Future<void> getReOrder() async {
+    try {
+      loading(true);
+      final res = await repo.getMyReOrder(auth.token());
+      if (res.status == 200 || res.status == 201 && res.error == null) {
+        myReOrder(res.myOrder);
       } else {
         showErrorSnackBar(res.error.toString());
       }
