@@ -24,6 +24,7 @@ class HomeController extends GetxController {
   final Rx<String> appTitle = 'الرئيسية'.obs;
   final Rx<bool> loading = false.obs;
   final Rx<Service> selectedService = Service().obs;
+  final Rx<Subject> selectedSubject = Subject().obs;
   final Rx<StudyProgram> selectedDay = StudyProgram().obs;
 
   var tabIndex = 0.obs;
@@ -87,6 +88,7 @@ class HomeController extends GetxController {
       final res = await repo.getSubjects(auth.token());
       if (res.status == 200 || res.status == 201 && res.error == null) {
         subjects(res.subjects);
+        selectedSubject(subjects.first);
       } else {
         showErrorSnackBar(res.error.toString());
       }

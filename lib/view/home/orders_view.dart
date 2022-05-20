@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:q_overlay/q_overlay.dart';
 import 'package:university_services_app/shared/constance.dart';
 import 'package:university_services_app/shared/widgets/action_button.dart';
+import 'package:university_services_app/view/home/widget/sub_services_widget.dart';
 
 import '../../controller/home_controller.dart';
 
@@ -80,19 +81,7 @@ class OrderView extends GetView<HomeController> {
                   const SizedBox(
                     height: 5,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      CustomButton(
-                          title: 'إعادة عملي',
-                          icon: Icons.add_card_rounded,
-                          onPressed: () {}),
-                      CustomButton(
-                          title: 'رفع شكوى',
-                          icon: Icons.comment,
-                          onPressed: () {})
-                    ],
-                  ),
+                  const SubServicesWidget(),
                   const Divider(),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.0),
