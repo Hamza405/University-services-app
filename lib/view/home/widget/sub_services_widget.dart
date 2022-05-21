@@ -48,6 +48,8 @@ class SubServicesWidget extends GetView<HomeController> {
                   actions: [
                     TextButton(
                         onPressed: () {
+                          controller
+                              .addReOrder(controller.selectedSubject().id ?? 1);
                           Get.back();
                         },
                         child: const Text('تاكيد',
@@ -67,16 +69,55 @@ class SubServicesWidget extends GetView<HomeController> {
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SizedBox(
-                        height: 150,
-                        child: TextField(
-                          decoration: InputDecoration(
-                              labelText: 'الشكوى',
-                              hintText: 'أدخل محتوى الشكوى'),
+                      Row(
+                        children: [
+                          const Text('إظهار أسم مقدم الشكوى :'),
+                          const SizedBox(
+                            width: 16,
+                          ),
+                          StatefulBuilder(
+                              builder: (context, state) => Checkbox(
+                                  value: controller.complaintCommand().isShow,
+                                  onChanged: (v) {
+                                    controller.complaintCommand().isShow =
+                                        !controller.complaintCommand().isShow;
+                                    state(() {});
+                                  }))
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
+                        child: SizedBox(
+                          height: 100,
+                          child: TextField(
+                            onChanged: (text) {
+                              controller.complaintCommand().content = text;
+                            },
+                            minLines: 1,
+                            maxLines: 5,
+                            keyboardType: TextInputType.multiline,
+                            decoration: const InputDecoration(
+                                labelText: 'الشكوى',
+                                hintText: 'أدخل محتوى الشكوى'),
+                          ),
                         ),
                       ),
                     ],
-                  ));
+                  ),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          controller.saveComplaint();
+                          Get.back();
+                        },
+                        child: const Text('تاكيد',
+                            style: TextStyle(color: primaryColor))),
+                    TextButton(
+                      onPressed: Get.back,
+                      child: const Text('إلغاء'),
+                    )
+                  ]);
             })
       ],
     );

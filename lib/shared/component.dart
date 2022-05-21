@@ -46,11 +46,18 @@ void showOrderSuccess(Order order) {
                 height: 10,
               ),
               Text(
-                'سيتم اشعارك عند اكتمال طلبك, الطلب الصالح حتى تاريخ ${order.deadline!.toIso8601String().split('T').first}',
+                'الطلب صالح حتى تاريخ ${order.deadline!.toIso8601String().split('T').first}',
                 style: TextStyle(fontSize: 15),
               ),
             ],
           ),
         ),
       ));
+}
+
+void showComplaintSuccess() {
+  Get.defaultDialog(
+    title: 'تقديم شكوى',
+    middleText: 'تم تقديم الشكوى بنجاح',
+  );
 }

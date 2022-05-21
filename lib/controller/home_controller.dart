@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
+import 'package:university_services_app/model/complaint_command.dart';
 import 'package:university_services_app/model/study_program.dart';
 import 'package:university_services_app/model/subject.dart';
 import 'package:university_services_app/repository/home_repo.dart';
@@ -21,11 +22,13 @@ class HomeController extends GetxController {
   RxList<StudyProgram> studyProgram = <StudyProgram>[].obs;
   RxList<Order> myOrder = <Order>[].obs;
   RxList<ReOrder> myReOrder = <ReOrder>[].obs;
-  final Rx<String> appTitle = 'الرئيسية'.obs;
-  final Rx<bool> loading = false.obs;
-  final Rx<Service> selectedService = Service().obs;
-  final Rx<Subject> selectedSubject = Subject().obs;
-  final Rx<StudyProgram> selectedDay = StudyProgram().obs;
+
+  final appTitle = 'الرئيسية'.obs;
+  final loading = false.obs;
+  final selectedService = Service().obs;
+  final selectedSubject = Subject().obs;
+  final selectedDay = StudyProgram().obs;
+  final complaintCommand = ComplaintCommand().obs;
 
   var tabIndex = 0.obs;
   void changeTabIndex(int index) {
@@ -160,6 +163,43 @@ class HomeController extends GetxController {
       final res = await repo.getMyReOrder(auth.token());
       if (res.status == 200 || res.status == 201 && res.error == null) {
         myReOrder(res.myOrder);
+      } else {
+        showErrorSnackBar(res.error.toString());
+      }
+      loading(false);
+    } catch (e) {
+      loading(false);
+
+      print(e.toString());
+      showErrorSnackBar('Some thing went wrong!');
+    }
+  }
+
+  Future<void> addReOrder(int subjectId) async {
+    try {
+      loading(true);
+      final res = await repo.addReOrder(subjectId, auth.token());
+      if (res.status == 200 || res.status == 201 && res.error == null) {
+        showOrderSuccess(Order(
+            deadline: res.order!.deadline, created_at: res.order!.created_at));
+      } else {
+        showErrorSnackBar(res.error.toString());
+      }
+      loading(false);
+    } catch (e) {
+      loading(false);
+
+      print(e.toString());
+      showErrorSnackBar('Some thing went wrong!');
+    }
+  }
+
+  Future<void> saveComplaint() async {
+    try {
+      loading(true);
+      final res = await repo.saveComplaint(complaintCommand(), auth.token());
+      if (res.status == 200 || res.status == 201 && res.error == null) {
+        showComplaintSuccess();
       } else {
         showErrorSnackBar(res.error.toString());
       }

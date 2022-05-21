@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:university_services_app/model/complaint_command.dart';
 import 'package:university_services_app/model/order.dart';
 import 'package:university_services_app/model/service.dart';
 import 'package:university_services_app/model/study_program.dart';
@@ -54,6 +55,19 @@ class HomeRepo {
     }
   }
 
+  Future<OrderModel> saveComplaint(
+      ComplaintCommand command, String token) async {
+    try {
+      final response = await _dio.post('saveComplaint',
+          data: command.toJson(),
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+      return OrderModel.fromJson(response.data as Map<String, dynamic>);
+    } catch (e) {
+      print('adasdasd ${e.toString()}');
+      rethrow;
+    }
+  }
+
   Future<OrderModel> getMyOrder(String token) async {
     try {
       final response = await _dio.get('getOrders',
@@ -67,6 +81,19 @@ class HomeRepo {
   Future<ReOrderModel> getMyReOrder(String token) async {
     try {
       final response = await _dio.get('getReOrder',
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+      return ReOrderModel.fromJson(response.data as Map<String, dynamic>);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ReOrderModel> addReOrder(int subjectId, String token) async {
+    try {
+      final response = await _dio.post('reOrder',
+          data: {
+            'subject': subjectId.toString(),
+          },
           options: Options(headers: {'Authorization': 'Bearer $token'}));
       return ReOrderModel.fromJson(response.data as Map<String, dynamic>);
     } catch (e) {
