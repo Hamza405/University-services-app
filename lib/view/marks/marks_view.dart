@@ -80,7 +80,7 @@ class _MarksViewState extends State<MarksView> with TickerProviderStateMixin {
                     : TabBarView(
                         controller: tabController,
                         children: [
-                          MyMarks(marks: controller.marks),
+                          MyMarks(marks: controller.marksOnly),
                           Exercise(marks: controller.marks),
                         ],
                       ),

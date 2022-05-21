@@ -51,7 +51,7 @@ class MarksController extends GetxController {
       final res = await repo.getMarksOnly(auth.token());
       if (res.status == 200 || res.status == 201 && res.error == null) {
         marksOnly(res.marks);
-        for (var mark in marks) {
+        for (var mark in marksOnly) {
           mark.subjectName = subjects
               .firstWhere((element) => element.id == mark.subjectId)
               .name;
