@@ -92,10 +92,12 @@ class TDrawer extends StatelessWidget {
             },
           ),
           const Spacer(),
-          SizedBox(
-              width: 150,
-              height: 150,
-              child: Image.asset('assets/logo/logo.png')),
+          Expanded(
+            child: SizedBox(
+                width: 150,
+                height: 150,
+                child: Image.asset('assets/logo/logo.png')),
+          ),
           const SizedBox(
             height: 32,
           )

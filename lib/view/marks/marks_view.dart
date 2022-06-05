@@ -64,10 +64,10 @@ class _MarksViewState extends State<MarksView> with TickerProviderStateMixin {
                 indicatorSize: TabBarIndicatorSize.label,
                 tabs: const [
                   Tab(
-                    child: Text('     علاماتي     '),
+                    child: Text('جميع الامتحانات'),
                   ),
                   Tab(
-                    child: Text('جميع الامتحانات'),
+                    child: Text('     علاماتي     '),
                   ),
                 ]),
           ),
@@ -80,8 +80,8 @@ class _MarksViewState extends State<MarksView> with TickerProviderStateMixin {
                     : TabBarView(
                         controller: tabController,
                         children: [
-                          MyMarks(marks: controller.marksOnly),
                           Exercise(marks: controller.marks),
+                          MyMarks(marks: controller.marksOnly),
                         ],
                       ),
               ))),

@@ -262,9 +262,10 @@ class _SignupViewState extends State<SignupView> {
                                           alignment: Alignment.bottomCenter,
                                           items: <String>[
                                             'حاسبات',
+                                            'طبية',
                                             'اتصالات',
-                                            'ميكاترونكس',
-                                            'طاقة',
+                                            'ميكانيك',
+                                            'طاقة'
                                           ].map((String value) {
                                             return DropdownMenuItem<String>(
                                               value: value,

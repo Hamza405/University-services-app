@@ -7,6 +7,7 @@ import 'package:university_services_app/model/study_program.dart';
 import 'package:university_services_app/model/subject.dart';
 
 import '../model/ads.dart';
+import '../model/exam.dart';
 import '../model/re_order.dart';
 
 class HomeRepo {
@@ -106,6 +107,16 @@ class HomeRepo {
       final response = await _dio.get('getStudyProgram',
           options: Options(headers: {'Authorization': 'Bearer $token'}));
       return StudyProgramModel.fromJson(response.data as Map<String, dynamic>);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ExamModel> getExam(String token) async {
+    try {
+      final response = await _dio.get('getExam',
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+      return ExamModel.fromJson(response.data as Map<String, dynamic>);
     } catch (e) {
       rethrow;
     }

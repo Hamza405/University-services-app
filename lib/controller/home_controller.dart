@@ -6,6 +6,7 @@ import 'package:university_services_app/model/subject.dart';
 import 'package:university_services_app/repository/home_repo.dart';
 
 import '../model/ads.dart';
+import '../model/exam.dart';
 import '../model/order.dart';
 import '../model/re_order.dart';
 import '../model/service.dart';
@@ -28,6 +29,7 @@ class HomeController extends GetxController {
   final selectedService = Service().obs;
   final selectedSubject = Subject().obs;
   final selectedDay = StudyProgram().obs;
+  final exam = Exam().obs;
   final complaintCommand = ComplaintCommand().obs;
 
   var tabIndex = 0.obs;
@@ -207,6 +209,23 @@ class HomeController extends GetxController {
     } catch (e) {
       loading(false);
 
+      print(e.toString());
+      showErrorSnackBar('Some thing went wrong!');
+    }
+  }
+
+  Future<void> getExam() async {
+    try {
+      loading(true);
+      final res = await repo.getExam(auth.token());
+      if (res.status == 200 || res.status == 201 && res.error == null) {
+        exam(res.exam);
+      } else {
+        showErrorSnackBar(res.error.toString());
+      }
+      loading(false);
+    } catch (e) {
+      loading(false);
       print(e.toString());
       showErrorSnackBar('Some thing went wrong!');
     }
