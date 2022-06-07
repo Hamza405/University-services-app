@@ -1,14 +1,19 @@
 // ignore_for_file: prefer_if_null_operators
 
+import '../shared/constance.dart';
+
 class ExamModel {
   final Exam? exam;
   final int? status;
   final String? error;
+  // "public/Image/StudyExam/"
 
   ExamModel({this.exam, this.status, this.error});
 
   ExamModel.fromJson(Map<String, dynamic> json)
-      : exam = json['exam'] != null ? json['exam'] : null,
+      : exam = json['exam'] != null
+            ? Exam.fromJson(json['exam'] as Map<String, dynamic>)
+            : null,
         error = json['error'] != null ? json['error'] : null,
         status = json['status'] ?? 500;
 
@@ -27,7 +32,7 @@ class Exam {
 
   Exam.fromJson(Map<String, dynamic> json)
       : id = json['id'],
-        exam = json['exam'];
+        exam = imageUrl + json['image'];
 
   toJson() => {
         'id': id,

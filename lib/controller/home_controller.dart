@@ -44,6 +44,7 @@ class HomeController extends GetxController {
     getServices();
     getOrder();
     getStudyProgram();
+    getExam();
     super.onInit();
   }
 
@@ -220,6 +221,7 @@ class HomeController extends GetxController {
       final res = await repo.getExam(auth.token());
       if (res.status == 200 || res.status == 201 && res.error == null) {
         exam(res.exam);
+        print(exam().toJson());
       } else {
         showErrorSnackBar(res.error.toString());
       }

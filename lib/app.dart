@@ -5,6 +5,7 @@ import 'package:q_overlay/q_overlay.dart';
 import 'package:university_services_app/controller/home_controller.dart';
 import 'package:university_services_app/shared/local_storage.dart';
 import 'package:university_services_app/view/auth/login_view.dart';
+import 'package:university_services_app/view/exam_program/exam_program_view.dart';
 import 'package:university_services_app/view/study_program/study_program_view.dart';
 
 import 'controller/auth_controller.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         marksRoute: (context) => const MarksView(),
         subjectsRoute: (context) => const SubjectsView(),
         studyProgramRoute: (context) => const StudyProgramView(),
+        examProgramRoute: (context) => const ExamProgramView(),
       },
     );
   }

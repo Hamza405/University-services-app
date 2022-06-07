@@ -16,6 +16,7 @@ dependencies:
   dio: ^4.0.5
   shared_preferences: ^2.0.13
   rxdart: ^0.27.3
+  full_screen_image_null_safe: ^2.0.0
   q_overlay:
     git: https://github.com/SchabanBo/q_overlay.git
 

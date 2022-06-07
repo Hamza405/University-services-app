@@ -120,7 +120,9 @@ class OrderView extends GetView<HomeController> {
                               ),
                               trailing: Icon(
                                 e.state == 0 ? Icons.watch_later : Icons.check,
-                                color: Colors.orangeAccent,
+                                color: e.state == 0
+                                    ? Colors.orangeAccent
+                                    : Colors.green,
                               ),
                             ),
                           ),
