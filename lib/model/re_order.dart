@@ -39,8 +39,8 @@ class ReOrder {
 
   ReOrder.fromJson(Map<String, dynamic> json)
       : id = json['id'],
-        userId = json['serviceID'],
-        subjectId = json['subjectId'],
+        userId = json['userID'],
+        subjectId = json['subjectID'],
         deadline =
             json['deadline'] != null ? DateTime.parse(json['deadline']) : null,
         created_at = json['created_at'] != null

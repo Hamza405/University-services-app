@@ -9,18 +9,20 @@ class MyMarks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DataTable(
-        columns: const [
-          DataColumn(label: Center(child: Text('المادة'))),
-          DataColumn(label: Center(child: Text('النظري'))),
-          DataColumn(label: Center(child: Text('العملي'))),
-        ],
-        rows: marks
-            .map((e) => DataRow(cells: [
-                  DataCell(Text(e.subjectName.toString())),
-                  DataCell(Text(e.th.toString())),
-                  DataCell(Text(e.pr.toString())),
-                ]))
-            .toList());
+    return SingleChildScrollView(
+      child: DataTable(
+          columns: const [
+            DataColumn(label: Center(child: Text('المادة'))),
+            DataColumn(label: Center(child: Text('النظري'))),
+            DataColumn(label: Center(child: Text('العملي'))),
+          ],
+          rows: marks
+              .map((e) => DataRow(cells: [
+                    DataCell(Text(e.subjectName.toString())),
+                    DataCell(Text(e.th.toString())),
+                    DataCell(Text(e.pr.toString())),
+                  ]))
+              .toList()),
+    );
   }
 }

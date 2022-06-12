@@ -43,6 +43,7 @@ class HomeController extends GetxController {
     getSubjects();
     getServices();
     getOrder();
+    getReOrder();
     getStudyProgram();
     getExam();
     super.onInit();
@@ -166,6 +167,7 @@ class HomeController extends GetxController {
       final res = await repo.getMyReOrder(auth.token());
       if (res.status == 200 || res.status == 201 && res.error == null) {
         myReOrder(res.myOrder);
+        print(myReOrder.first.toJson());
       } else {
         showErrorSnackBar(res.error.toString());
       }
@@ -183,8 +185,9 @@ class HomeController extends GetxController {
       loading(true);
       final res = await repo.addReOrder(subjectId, auth.token());
       if (res.status == 200 || res.status == 201 && res.error == null) {
-        showOrderSuccess(Order(
-            deadline: res.order!.deadline, created_at: res.order!.created_at));
+        getReOrder();
+        // showOrderSuccess(Order(
+        //     deadline: res.order!.deadline, created_at: res.order!.created_at));
       } else {
         showErrorSnackBar(res.error.toString());
       }

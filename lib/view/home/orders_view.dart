@@ -129,7 +129,48 @@ class OrderView extends GetView<HomeController> {
                         ),
                       ),
                     );
-                  }).toList()
+                  }).toList(),
+                  const SizedBox(height: 5),
+                  const Divider(),
+                  ...controller.myReOrder.map((e) {
+                    var name = controller.subjects
+                        .firstWhere(
+                            (element) => element.id.toString() == e.subjectId)
+                        .name;
+                    return Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          child: Card(
+                            child: ListTile(
+                              contentPadding:
+                                  const EdgeInsets.symmetric(horizontal: 25.0),
+                              title: Row(
+                                children: [
+                                  Expanded(flex: 2, child: Text(name!)),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                      flex: 2,
+                                      child: Text(e.created_at!
+                                          .toIso8601String()
+                                          .split('T')
+                                          .first)),
+                                ],
+                              ),
+                              trailing: IconButton(
+                                icon: const Icon(
+                                  Icons.back_hand,
+                                  color: Colors.red,
+                                ),
+                                onPressed: () {},
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ]),
           ));
   }
