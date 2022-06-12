@@ -11,28 +11,31 @@ class YearsWidget extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Obx(() => Column(
-            children: [
-              buildStudyField(
-                  'السنة الأولى', controller.selectedDay.value.year1),
-              const SizedBox(height: 32.0),
-              buildStudyField(
-                  'السنة الثانية', controller.selectedDay.value.year2),
-              const SizedBox(height: 32.0),
-              buildStudyField(
-                  'السنة الثالثة', controller.selectedDay.value.year3),
-              const SizedBox(height: 32.0),
-              buildStudyField(
-                  'السنة الرابعة', controller.selectedDay.value.year4),
-              const SizedBox(height: 32.0),
-              buildStudyField(
-                  'السنة الخامسة', controller.selectedDay.value.year5),
-            ],
+      child: Obx(() => SingleChildScrollView(
+            child: Column(
+              children: [
+                buildStudyField(
+                    'السنة الأولى', controller.selectedDay.value.year1),
+                const SizedBox(height: 32.0),
+                buildStudyField(
+                    'السنة الثانية', controller.selectedDay.value.year2),
+                const SizedBox(height: 32.0),
+                buildStudyField(
+                    'السنة الثالثة', controller.selectedDay.value.year3),
+                const SizedBox(height: 32.0),
+                buildStudyField(
+                    'السنة الرابعة', controller.selectedDay.value.year4),
+                const SizedBox(height: 32.0),
+                buildStudyField(
+                    'السنة الخامسة', controller.selectedDay.value.year5),
+              ],
+            ),
           )),
     );
   }
 
   Widget buildStudyField(year, content) => Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(
             year.toString() + ' : ',

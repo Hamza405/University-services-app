@@ -16,7 +16,8 @@ class StudyProgramView extends StatelessWidget {
           title: 'البرنامج الدراسي',
         ),
         drawer: const TDrawer(),
-        body: Column(children: const [DaysWidget(), YearsWidget()]),
+        body: SingleChildScrollView(
+            child: Column(children: const [DaysWidget(), YearsWidget()])),
       ),
     );
   }
