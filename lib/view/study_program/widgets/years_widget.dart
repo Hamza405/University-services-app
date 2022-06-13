@@ -34,21 +34,30 @@ class YearsWidget extends GetView<HomeController> {
     );
   }
 
-  Widget buildStudyField(year, content) => Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(
-            year.toString() + ' : ',
-            style: const TextStyle(
-              fontSize: 20,
+  Widget buildStudyField(year, content) => SizedBox(
+        width: double.infinity,
+        height: content.length > 5
+            ? content.length > 76
+                ? 150
+                : 50
+            : 25,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          children: [
+            Text(
+              year.toString() + ' : ',
+              style: const TextStyle(
+                fontSize: 20,
+              ),
             ),
-          ),
-          Text(
-            content.toString(),
-            style: const TextStyle(
-              fontSize: 18,
+            Text(
+              content.toString(),
+              style: const TextStyle(
+                fontSize: 18,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
 }

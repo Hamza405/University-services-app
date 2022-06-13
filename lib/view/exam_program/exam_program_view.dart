@@ -29,12 +29,14 @@ class ExamProgramView extends GetView<HomeController> {
                 child: Card(
                   child: controller.exam.value.exam != null
                       ? FullScreenWidget(
-                          disposeLevel: DisposeLevel.Medium,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Image.network(
-                              path,
-                              fit: BoxFit.cover,
+                          disposeLevel: DisposeLevel.Low,
+                          child: SafeArea(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.network(
+                                path,
+                                fit: BoxFit.contain,
+                              ),
                             ),
                           ),
                         )
