@@ -102,6 +102,19 @@ class HomeRepo {
     }
   }
 
+  Future<ReOrderModel> pullReOrder(int id, String token) async {
+    try {
+      final response = await _dio.post('pullReOrder',
+          data: {
+            'id': id,
+          },
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+      return ReOrderModel.fromJson(response.data as Map<String, dynamic>);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<StudyProgramModel> getStudyProgram(String token) async {
     try {
       final response = await _dio.get('getStudyProgram',

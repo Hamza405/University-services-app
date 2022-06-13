@@ -160,10 +160,10 @@ class OrderView extends GetView<HomeController> {
                               ),
                               trailing: IconButton(
                                 icon: const Icon(
-                                  Icons.back_hand,
+                                  Icons.restart_alt_sharp,
                                   color: Colors.red,
                                 ),
-                                onPressed: () {},
+                                onPressed: () => controller.pullReOrder(e.id!),
                               ),
                             ),
                           ),

@@ -200,6 +200,24 @@ class HomeController extends GetxController {
     }
   }
 
+  Future<void> pullReOrder(int id) async {
+    try {
+      loading(true);
+      final res = await repo.pullReOrder(id, auth.token());
+      if (res.status == 200 || res.status == 201 && res.error == null) {
+        getReOrder();
+      } else {
+        showErrorSnackBar(res.error.toString());
+      }
+      loading(false);
+    } catch (e) {
+      loading(false);
+
+      print(e.toString());
+      showErrorSnackBar('Some thing went wrong!');
+    }
+  }
+
   Future<void> saveComplaint() async {
     try {
       loading(true);
